@@ -32,7 +32,8 @@ class CinemaHall(models.Model):
     seats_in_row = models.IntegerField()
 
     @property
-    def capacity(self):
+    def capacity(self) -> int:
+        """Return total number of seats in the hall."""
         return self.rows * self.seats_in_row
 
     def __str__(self) -> str:
@@ -45,5 +46,6 @@ class MovieSession(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.movie.title} {self.show_time}"
-
+        return (
+            f"{self.movie.title} {self.show_time}"
+        )
